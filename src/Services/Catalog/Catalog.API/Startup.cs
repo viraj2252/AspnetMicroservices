@@ -41,6 +41,7 @@ namespace Catalog.API
             services.AddScoped<IProductRepository, ProductRepository>();
             
             services.AddHealthChecks()
+                .AddCheck("Self", () => HealthCheckResult.Healthy())
                 .AddMongoDb(Configuration["DatabaseSettings:ConnectionString"], "MongoDb Health", HealthStatus.Degraded);
         }
 
